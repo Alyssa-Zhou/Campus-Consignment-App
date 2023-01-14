@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swjtu.secondhand.mapper.IUserMapper">
+
+    <resultMap id="UserEntityMap" type="com.swjtu.secondhand.entity.User">
+        <id column="id" property="id"/>
+        <result column="reset_question" property="resetQuestion"/>
+        <result column="reset_answer" property="resetAnswer"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into user(username,password,reset_question,reset_answer,state,create_time,update_time,salt)
+        values (#{username}, #{password}, #{resetQuestion}, #{resetAnswer}, #{state}, #{createTime}, #{updateTime},#{salt})
+    </insert>
+
+    <select id="findByUsername" resultMap="UserEntityMap">
+        select * from user where username = #{username}
+    </select>
+
+    <!-- 根据uid更新用户的密码：
+	 Integer updatePasswordByUid(
+		@Param("uid") Integer uid,
+		@Param("password") String password,
+        @param updateTime 最后修改时间 -->
+    <update id="updatePasswordById">
+        UPDATE
+            user
+        SET
+            password = #{password},
+            update_time = #{updateTime}
+        WHERE
+            id = #{id}
+    </update>
+
+    <!-- 根据用户id查询用户数据：User findById(Integer id) -->
+    <select id="findById" resultMap="UserEntityMap">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swjtu.secondhand.mapper.IUserDetailMapper">
+
+    <resultMap id="UserDetailEntityMap" type="com.swjtu.secondhand.entity.UserDetail">
+        <id column="id" property="id"/>
+        <result column="student_number" property="studentNumber"/>
+        <result column="student_card" property="studentCard"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into user_detail(id, student_number, student_card, identified, role, avatar, phone_number, email, alias, description, create_time, update_time)
+        values (#{id},#{studentNumber}, #{studentCard}, #{identified},#{role}, #{avatar}, #{phoneNumber}, #{email}, #{alias}, #{description}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--查询单个-->
+    <select id="findById" resultMap="UserDetailEntityMap">
+        select
+            id, student_number, student_card, identified, role, avatar, phone_number, email, alias, description, create_time, update_time
+        from user_detail
+        where id = #{id}
+    </select>
+
+    <!-- 根据uid更新用户个人资料：Integer updateInfoByUid(User user) -->
+    <update id="updateDetailById">
+        UPDATE
+            user_detail
+        SET
+        <if test="studentNumber != null">student_number = #{studentNumber},</if>
+        <if test="studentCard != null">student_card = #{studentCard},</if>
+        <if test="identified != null">identified = #{identified},</if>
+        <if test="role != null">role = #{role},</if>
+        <if test="avatar != null">avatar = #{avatar},</if>
+        <if test="phoneNumber != null">phone_number = #{phoneNumber},</if>
+        <if test="email != null">email = #{email},</if>
+        <if test="alias != null">alias = #{alias},</if>
+        <if test="description != null">description = #{description},</if>
+        update_time = #{updateTime}
+        WHERE
+        id = #{id}
+    </update>
+
+    <!-- 根据id更新用户的头像-->
+    <update id="updateAvatarById">
+        UPDATE
+            user_detail
+        SET
+            avatar = #{avatar},
+            update_time = #{updateTime}
+        WHERE
+            id = #{id}
+    </update>
+</mapper>
