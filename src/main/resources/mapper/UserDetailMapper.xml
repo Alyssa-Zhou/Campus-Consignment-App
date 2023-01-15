@@ -56,4 +56,15 @@
         WHERE
             id = #{id}
     </update>
+
+    <!-- 根据id更新用户学生证照片-->
+    <update id="updateStudentCardById">
+        UPDATE
+            user_detail
+        SET
+            student_card = #{studentCard},
+            update_time = #{updateTime}
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

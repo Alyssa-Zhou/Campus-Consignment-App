@@ -57,4 +57,29 @@ public class UserDetailServiceTests {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    public void changeStudentCard() {
+        try {
+            String id = "0000000004";
+            String studentcard = "/upload/student/sniugw.png";
+            iUserDetailService.changeStudentCard(id, studentcard);
+            System.out.println("OK.");
+        } catch (ServiceException e) {
+            System.out.println(e.getClass().getSimpleName());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void insert() {
+        try {
+            String username = "hdbdbsb";
+            iUserDetailService.insert(username);
+//            System.out.println(userDetail);
+        } catch (ServiceException e) {
+            System.out.println(e.getClass().getSimpleName());
+            System.out.println(e.getMessage());
+        }
+    }
 }

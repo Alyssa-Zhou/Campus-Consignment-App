@@ -2,9 +2,6 @@ package com.swjtu.secondhand.controller;
 
 import com.swjtu.secondhand.entity.User;
 import com.swjtu.secondhand.service.IUserService;
-import com.swjtu.secondhand.service.ex.InsertException;
-import com.swjtu.secondhand.service.ex.UsernameDuplicateException;
-import com.swjtu.secondhand.service.impl.UserServiceImpl;
 import com.swjtu.secondhand.mapper.IUserMapper;
 import com.swjtu.secondhand.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;

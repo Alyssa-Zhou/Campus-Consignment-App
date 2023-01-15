@@ -12,9 +12,16 @@ public interface IUserDetailService {
     UserDetail getById(String id);
 
     /**
+     * @description:在注册时插入用户信息表
+     * @date: 2023/1/15
+     * @param: username
+     * @return: void
+     */
+    void insert(String username);
+
+    /**
      * 修改用户资料
      * @param id 当前登录的用户的id
-     * @param username 当前登录的用户名
      * @param userDetail 用户的新的数据
      */
     void changeInfo(String id, UserDetail userDetail);
@@ -25,4 +32,11 @@ public interface IUserDetailService {
      * @param avatar 用户的新头像的路径
      */
     void changeAvatar(String id, String avatar);
+
+    /**
+     * 修改学生证照
+     * @param id 当前登录的用户的id
+     * @param studentCard 用户的新头像的路径
+     */
+    void changeStudentCard(String id, String studentCard);
 }
