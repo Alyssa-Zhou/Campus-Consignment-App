@@ -16,18 +16,18 @@
 传入参数
 ```json
 {
-    "username":"xiaocaomei",
-    "password":"abcdefg",
-    "resetQuestion":"3",
-    "resetAnswer":"happy"
+  "username":"xiaocaomei",
+  "password":"abcdefg",
+  "resetQuestion":"3",
+  "resetAnswer":"happy"
 }
 ```
 返回值
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": null
+  "state":200,
+  "message":null,
+  "data":null
 }
 ```
 
@@ -37,26 +37,26 @@
 传入参数
 ```json
 {
-    "username": "lower111",
-    "password": "123456"
+    "username": "lower111",
+    "password": "123456"
 }
 ```
 返回值
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": {
-        "id": "0000000005",
-        "username": "lower111",
-        "password": null,
-        "resetQuestion": null,
-        "resetAnswer": null,
-        "state": null,
-        "createTime": null,
-        "updateTime": null,
-        "salt": null
-    }
+    "state": 200,
+    "message": null,
+    "data": {
+        "id": "0000000005",
+        "username": "lower111",
+        "password": null,
+        "resetQuestion": null,
+        "resetAnswer": null,
+        "state": null,
+        "createTime": null,
+        "updateTime": null,
+        "salt": null
+    }
 }
 ```
 
@@ -67,16 +67,16 @@
 传入参数
 ```json
 {
-    "oldPassword":"888888",
-    "newPassword":"123456"
+    "oldPassword":"888888",
+    "newPassword":"123456"
 }
 ```
 返回值
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": null
+    "state": 200,
+    "message": null,
+    "data": null
 }
 ```
 
@@ -90,52 +90,51 @@
 返回值
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": {
-        "id": "0000000007",
-        "studentNumber": null,
-        "studentCard": null,
-        "role": "3",
-        "identified": "0",
-        "avatar": "/",
-        "phoneNumber": "12344556677",
-        "email": null,
-        "alias": "",
-        "description": null,
-        "createTime": "2022-12-10T14:33:00.000+00:00",
-        "updateTime": null
-    }
+    "state": 200,
+    "message": null,
+    "data": {
+        "id": "0000000007",
+        "studentNumber": null,
+        "studentCard": null,
+        "role": "3",
+        "identified": "0",
+        "avatar": "/",
+        "phoneNumber": "12344556677",
+        "email": null,
+        "alias": "",
+        "description": null,
+        "createTime": "2022-12-10T14:33:00.000+00:00",
+        "updateTime": null
+    }
 }
 ```
 
 
 ## 修改用户信息
-*如果用户注册后，应当跳转到完善信息页，如果没有完善信息，则信息数据表并没有被建立*
-*如果发现用户没有建立用户数据表，应当跳转到完善信息页面*
+*如果用户注册后，自动建立用户信息表填写基本内容，此接口用于维护用户信息*
 
 接口 /users/detail
 请求 PATCH
 传入参数：**传入需要修改的值**
 ```json
 {
-        "studentNumber": null,
-        "studentCard": null,
-        "role": "3",
-        "identified": "0",
-        "avatar": "/",
-        "phoneNumber": "12344556697",
-        "email": "114514@163.com",
-        "alias": "什么时候能有书读",
-        "description": "随缘出"
+        "studentNumber": null,
+        "studentCard": null,
+        "role": "3",
+        "identified": "0",
+        "avatar": "/",
+        "phoneNumber": "12344556697",
+        "email": "114514@163.com",
+        "alias": "什么时候能有书读",
+        "description": "随缘出"
 }
 ```
 返回值
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": null
+    "state": 200,
+    "message": null,
+    "data": null
 }
 ```
 
@@ -148,9 +147,9 @@ form-data
 返回值：图片存储路径
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": "/upload/6445fe52-f788-4731-b89f-315c447e49cf.jpg"
+    "state": 200,
+    "message": null,
+    "data": "/upload/6445fe52-f788-4731-b89f-315c447e49cf.jpg"
 }
 ```
 
@@ -163,9 +162,9 @@ form-data
 返回值：图片存储路径
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": "/upload/student/b6c17b8f-46dc-45cc-b342-b70a7faf3f3b.png"
+    "state": 200,
+    "message": null,
+    "data": "/upload/student/b6c17b8f-46dc-45cc-b342-b70a7faf3f3b.png"
 }
 ```
 
@@ -179,38 +178,38 @@ form-data
 返回值：商品对象列表
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": [
-        {
-            "id": "00000000000000000004",
-            "seller": null,
-            "name": "核酸抗原",
-            "category": null,
-            "description": "核酸抗原",
-            "location": "4",
-            "price": 6.0,
-            "img": "/",
-            "tags": null,
-            "state": null,
-            "createTime": null,
-            "updateTime": null
-        },
-        {
-            "id": "00000000000000000005",
-            "seller": null,
-            "name": "四六级耳机",
-            "category": null,
-            "description": "电池没电",
-            "location": "4",
-            "price": 10.0,
-            "img": "/",
-            "tags": null,
-            "state": null,
-            "createTime": null,
-            "updateTime": null
-        }
-    ]
+    "state": 200,
+    "message": null,
+    "data": [
+        {
+            "id": "00000000000000000004",
+            "seller": null,
+            "name": "核酸抗原",
+            "category": null,
+            "description": "核酸抗原",
+            "location": "4",
+            "price": 6.0,
+            "img": "/",
+            "tags": null,
+            "state": null,
+            "createTime": null,
+            "updateTime": null
+        },
+        {
+            "id": "00000000000000000005",
+            "seller": null,
+            "name": "四六级耳机",
+            "category": null,
+            "description": "电池没电",
+            "location": "4",
+            "price": 10.0,
+            "img": "/",
+            "tags": null,
+            "state": null,
+            "createTime": null,
+            "updateTime": null
+        }
+    ]
 }
 
 ```
@@ -223,24 +222,24 @@ form-data
 返回值：商品对象列表
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": [
-        {
-            "id": "00000000000000000005",
-            "seller": null,
-            "name": "四六级耳机",
-            "category": null,
-            "description": "电池没电",
-            "location": "4",
-            "price": 10.0,
-            "img": "/",
-            "tags": null,
-            "state": null,
-            "createTime": null,
-            "updateTime": null
-        }
-    ]
+    "state": 200,
+    "message": null,
+    "data": [
+        {
+            "id": "00000000000000000005",
+            "seller": null,
+            "name": "四六级耳机",
+            "category": null,
+            "description": "电池没电",
+            "location": "4",
+            "price": 10.0,
+            "img": "/",
+            "tags": null,
+            "state": null,
+            "createTime": null,
+            "updateTime": null
+        }
+    ]
 }
 
 ```
@@ -252,22 +251,22 @@ form-data
 返回值
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": {
-        "id": "00000000000000000004",
-        "seller": "0000000004",
-        "name": "核酸抗原",
-        "category": "00020",
-        "description": "核酸抗原",
-        "location": "4",
-        "price": 6.0,
-        "img": "/",
-        "tags": "核酸,抗原",
-        "state": "0",
-        "createTime": "2022-12-11T13:51:40.000+00:00",
-        "updateTime": "2022-12-11T13:51:40.000+00:00"
-    }
+    "state": 200,
+    "message": null,
+    "data": {
+        "id": "00000000000000000004",
+        "seller": "0000000004",
+        "name": "核酸抗原",
+        "category": "00020",
+        "description": "核酸抗原",
+        "location": "4",
+        "price": 6.0,
+        "img": "/",
+        "tags": "核酸,抗原",
+        "state": "0",
+        "createTime": "2022-12-11T13:51:40.000+00:00",
+        "updateTime": "2022-12-11T13:51:40.000+00:00"
+    }
 }
 ```
 
@@ -277,21 +276,21 @@ form-data
 接收参数：
 ```json
 {
-    "name":"卫生纸",
-    "category":"00012",
-    "description":"超市买的，剩下4包",
-    "location":"1",
-    "price":"4",
-    "tags":"餐巾纸,卫生纸"
+    "name":"卫生纸",
+    "category":"00012",
+    "description":"超市买的，剩下4包",
+    "location":"1",
+    "price":"4",
+    "tags":"餐巾纸,卫生纸"
 }
 ```
 
 返回值:
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": null
+    "state": 200,
+    "message": null,
+    "data": null
 }
 ```
 
@@ -301,21 +300,21 @@ form-data
 参数 pid为商品id
 ```json
 {
-    "name":"卫生纸",
-    "category":"00012",
-    "description":"超市买的，剩下4包",
-    "location":"1",
-    "price":"4",
-    "tags":"餐巾纸,卫生纸"
+    "name":"卫生纸",
+    "category":"00012",
+    "description":"超市买的，剩下4包",
+    "location":"1",
+    "price":"4",
+    "tags":"餐巾纸,卫生纸"
 }
 ```
 
 返回值:
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": null
+    "state": 200,
+    "message": null,
+    "data": null
 }
 ```
 
@@ -328,9 +327,9 @@ form-data
 返回值：图片存储路径
 ```json
 {
-    "state": 200,
-    "message": null,
-    "data": "/upload/p2f98a7d8-cd34-46fc-aa89-e64042ab85aa.jpg"
+    "state": 200,
+    "message": null,
+    "data": "/upload/p2f98a7d8-cd34-46fc-aa89-e64042ab85aa.jpg"
 }
 ```
 
