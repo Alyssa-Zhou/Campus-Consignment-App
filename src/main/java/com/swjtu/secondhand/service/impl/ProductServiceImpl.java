@@ -146,4 +146,35 @@ public class ProductServiceImpl implements IProductService {
             throw new UpdateException("更新数据时出现未知错误，请联系系统管理员");
         }
     }
+
+    @Override
+    public void changeProductState(String id, String newState) {
+        // 查询商品信息
+        Product result = productMapper.findById(id);
+        if (result == null) {
+            // 是：抛出UserNotFoundException异常
+            throw new ProductNotFoundException("商品数据不存在");
+        }
+
+        // 检查商品状态 不是0表示不在售 不支持修改信息
+        if (!result.getState().equals("0")) {
+            // 是：抛出UserNotFoundException异常
+            throw new ProductNotFoundException("商品数据不可更改");
+        }
+
+        // 验证指令
+        if(newState != "1" && newState != "2"){
+            throw new UpdateException("输入数据不合法");
+        }
+
+        // 创建当前时间对象
+        Date now = new Date();
+        // 调用方法 获取返回值
+        Integer rows = productMapper.updateProductState(id, newState, now);
+        if (rows != 1) {
+            // 是：抛出n异常
+            throw new UpdateException("更新数据时出现未知错误，请联系系统管理员");
+        }
+
+    }
 }

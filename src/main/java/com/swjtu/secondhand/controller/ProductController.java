@@ -134,4 +134,12 @@ public class ProductController extends BaseController{
         // 返回成功头像路径
         return new JsonResult<String>(OK, img);
     }
+
+    // 下架商品
+    @RequestMapping(value = "/products/{id}",method = RequestMethod.DELETE)
+    public JsonResult<Void> updateProductInfo(@PathVariable("id") String id) {
+        // state = 2 表示已经下架
+        productService.changeProductState(id,"2");
+        return new JsonResult<Void>(OK);
+    }
 }

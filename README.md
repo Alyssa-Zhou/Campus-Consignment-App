@@ -319,11 +319,11 @@ form-data
 ```
 
 ## 上传商品图片
-接口/products/img/{id}
-方法PATCH
-接收参数：
-form-data
-`key:"file", value:图片文件`
+接口/products/img/{id}  
+方法PATCH  
+接收参数：  
+form-data  
+`key:"file", value:图片文件`  
 返回值：图片存储路径
 ```json
 {
@@ -332,4 +332,71 @@ form-data
     "data": "/upload/p2f98a7d8-cd34-46fc-aa89-e64042ab85aa.jpg"
 }
 ```
+
+## 下架商品
+接口/products/{pid}  
+方法DELETE  
+参数：pid-商品编号  
+返回值：null
+
+# 订单
+订单能改变的信息只有pay id,express number和state
+## 新增订单
+接口/orders/{pid}?trans=0  
+方法POST  
+接收参数：  
+- pid-购买商品id  
+- trans-交易方式（0或者1）  
+
+返回值：
+```json
+{
+  "state": 200,
+  "message": null,
+  "data": null
+}
+```
+
+## 查询我的订单
+### 我购买的
+接口/orders/buy  
+方法GET  
+无传入参数  
+返回值  
+```json
+{
+    "state": 200,
+    "message": null,
+  "data": [
+    {
+      "id": "00000000000000000001",
+      "seller": "0000000004",
+      "sellerAlias": "lower",
+      "buyer": "0000000014",
+      "buyerAlias": null,
+      "pid": "00000000000000000004",
+      "price": 6.0,
+      "transactionMode": "0",
+      "payId": "12342876412",
+      "expressNumber": "123423785",
+      "state": "1",
+      "createTime": "2023-01-17T10:22:41.000+00:00",
+      "updateTime": "2023-01-17T10:22:40.000+00:00",
+      "pname": "核酸抗原"
+    }]
+}
+```
+### 我卖出的
+接口/orders/sell  
+方法GET  
+无传入参数  
+返回值同上
+
+## 更新支付信息
+
+## 更新物流信息
+
+## 取消订单
+
+## 完成订单
 

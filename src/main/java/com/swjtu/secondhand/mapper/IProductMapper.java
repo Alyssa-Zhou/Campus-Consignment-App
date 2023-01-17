@@ -23,4 +23,6 @@ public interface IProductMapper {
     Integer updateProductInfo(Product product);
 
     Integer updateProductImg(String id, String img, Date updateTime);
+
+    Integer updateProductState(String id, String newState, Date updateTime);
 }

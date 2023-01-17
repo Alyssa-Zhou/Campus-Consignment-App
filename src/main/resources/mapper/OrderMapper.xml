@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swjtu.secondhand.mapper.IOrderMapper">
+
+    <resultMap id="OrderEntityMap" type="com.swjtu.secondhand.entity.Order">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="seller" column="seller" jdbcType="VARCHAR"/>
+        <result property="sellerAlias" column="seller_alias" jdbcType="VARCHAR"/>
+        <result property="buyer" column="buyer" jdbcType="VARCHAR"/>
+        <result property="buyerAlias" column="buy_alias" jdbcType="VARCHAR"/>
+        <result property="pid" column="pid" jdbcType="VARCHAR"/>
+        <result property="pName" column="p_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="transactionMode" column="transaction_mode" jdbcType="VARCHAR"/>
+        <result property="payId" column="pay_id" jdbcType="VARCHAR"/>
+        <result property="expressNumber" column="express_number" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="findOrderById" resultMap="OrderEntityMap">
+        select
+            id, seller, seller_alias, buyer, buyer_alias ,pid, p_name, price, transaction_mode, pay_id, express_number, state, create_time, update_time
+        from `order`
+        where id = #{id}
+    </select>
+
+    <select id="findAllOrderBySellerId" resultMap="OrderEntityMap">
+        select
+            id, seller, seller_alias, buyer, buyer_alias , pid, p_name, price, transaction_mode, pay_id, express_number, state, create_time, update_time
+        from `order`
+        where seller = #{seller}
+    </select>
+
+    <select id="findAllOrderByBuyerId" resultMap="OrderEntityMap">
+        select
+            id, seller, seller_alias, buyer, buyer_alias , pid, p_name, price, transaction_mode, pay_id, express_number, state, create_time, update_time
+        from `order`
+        where buyer = #{buyer}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" >
+        insert into `order`(seller, seller_alias, buyer, buyer_alias , pid, p_name, price, transaction_mode, pay_id, express_number, state, create_time, update_time)
+        values (#{seller}, #{sellerAlias}, #{buyer},#{buyerAlias}, #{pid}, #{pName}, #{price}, #{transactionMode}, #{payId}, #{expressNumber}, #{state}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="updatePayInfoById">
+        update `order`
+        <set>
+            <if test="payId != null and payId != ''">
+                pay_id = #{payId},
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键修改数据-->
+    <update id="updateExpressInfoById">
+        update `order`
+        <set>
+            <if test="expressNumber != null and expressNumber != ''">
+                express_number = #{expressNumber},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键修改数据-->
+    <update id="updateStateById">
+        update `order`
+        <set>
+            <if test="state != null and state != ''">
+                state = #{state},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

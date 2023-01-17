@@ -101,4 +101,15 @@ public class ProductServiceTests {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    public void changeProductState() {
+        try {
+            productService.changeProductState("00000000000000000009","1");
+            System.out.println("OK.");
+        } catch (ServiceException e) {
+            System.out.println(e.getClass().getSimpleName());
+            System.out.println(e.getMessage());
+        }
+    }
 }
