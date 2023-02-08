@@ -118,7 +118,51 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void changeOrderState(String pid, String newState) {
+    public void changeOrderState(String uid, String id, String newState) {
+        Order order = orderMapper.findOrderById(id);
+        // 权限核对：只有该订单的卖家和买家可以修改订单状态
+        if(uid != order.getBuyer() && uid != order.getSeller()){
+            throw new UpdateException("无权修改该订单！");
+        }
 
+        if(!order.getState().equals("0")){
+            throw new UpdateException("当前订单状态不支持修改！");
+        }
+        if(newState == "1" || newState == "2"){
+            Integer rows = orderMapper.updateStateById(id,newState,new Date());
+            // 判断以上返回的受影响行数是否不为1
+            if (rows != 1) {
+                // 是：抛出UpdateException异常
+                throw new UpdateException("订单修改失败，请联系管理员！");
+            }
+        }
+        // 取消订单 商品重新上架
+        if(newState == "1"){
+            productService.changeProductState(order.getPid(), "0");
+        }
+    }
+
+    @Override
+    public void changeOrderInfo(String uid, String id, String number, String type){
+        Order order = orderMapper.findOrderById(id);
+        // 权限核对：只有该订单的卖家和买家可以修改订单状态
+        if(uid != order.getBuyer() && uid != order.getSeller()){
+            throw new UpdateException("无权修改该订单！");
+        }
+        if(!order.getState().equals("0")){
+            throw new UpdateException("当前订单状态不支持修改！");
+        }
+        Integer rows=0;
+        if(type == "1"){// type=1 支付单号
+            rows = orderMapper.updatePayInfoById(id,number,new Date());
+        }
+        else if(type == "2"){// type=2 快递单号
+            rows = orderMapper.updateExpressInfoById(id,number,new Date());
+        }
+        //
+        if (rows != 1) {
+            // 是：抛出UpdateException异常
+            throw new UpdateException("订单修改失败，请联系管理员！");
+        }
     }
 }

@@ -29,9 +29,22 @@ public interface IOrderService {
     /**
      * @description: 改变订单状态
      * @date: 2023/1/17
-     * @param:  pid
+     * @param:  uid 用户id
+     *          id 订单id
                 newState（0-1 取消、0-2完成）
      * @return: void
      */
-    void changeOrderState(String pid, String newState);
+    void changeOrderState(String uid, String id, String newState);
+
+    /**
+     * @description: 修改订单信息（支付单号、快递单号）
+     * @date: 2023/2/3
+     * @param: uid 用户id
+                id 订单id
+                number 单号
+                type 单号类型 1-支付单号 2-快递单号
+     * @return: void
+     */
+    void changeOrderInfo(String uid, String id, String number, String type);
+
 }

@@ -392,11 +392,50 @@ form-data
 无传入参数  
 返回值同上
 
-## 更新支付信息
 
-## 更新物流信息
+## 更新订单信息
+接口/orders/{orderId}?type=1&number=2147374683  
+方法POST  
+参数：
+- orderId 订单号
+- type 修改何种信息【1-支付单号】【2-快递单号】  
+- number 单号内容
 
-## 取消订单
+## 修改订单状态
+*订单取消后，商品自动上架*  
+接口/orders/state/{orderId}?state=1  
+方法POST  
+参数：  
+- orderId订单号
+- state修改为何种状态【1-取消】【2-完成】
 
-## 完成订单
+# 支付
+支付宝支付  
+## 生成 APP 支付订单信息
+接口/alipay/info  
+方法POST  
+参数：
+- `out_trade_no`订单号
+- `total_amount`总价格
+- `subject`支付主题（商品名称）  
 
+**参数格式 JSON**
+```json
+{
+    "out_trade_no": "70501111111S001111119",
+    "total_amount": "9.00",
+    "subject": "大乐透233"
+}
+```
+
+返回值：  
+`data`中包含`orderString`,形如
+`
+alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2021000122612470&biz_content=%7B%22out_trade_no%22%3A%2270501111111S001111119%22%2C%22total_amount%22%3A%229.00%22%2C%22subject%22%3A%22%E5%A4%A7%E4%B9%90%E9%80%8F233%22%7D&charset=UTF8&format=json&method=alipay.trade.app.pay&sign=HnZRwIYzW4QBNCTHX5hMpWaVXzI7G2rHrFe%2FN9w5FgyP8a3HeYJrlZ6wTjHR2RwDGQOvZD0WPi%2FjQy%2F5zQqJcWzdnvFn%2BGro7Tql%2B%2FjFmmSuZGO8%2B0dvoB4ZP6RqD9sONQjQjLer1dw9hLSnueiXCSHAGQvLbkB6sWdGExcM78m4tXJQrdhgCgS%2B96OdfhkE5Z1%2BTwQ3j%2FHaOG5j79sFqs5plHX53j6xkDxzYimkHE7OspffFYa1blbQ9CcYHMU80fmWt%2F857qXtA0m6IlWP4cXF%2FLn1E3YTyjaZcBt7pIUkZduMbE8aeNtyzTTA6mCohldNzvciNORkvTI92cHanQ%3D%3D&sign_type=RSA2&timestamp=2023-02-09+00%3A34%3A40
+`
+## 接收异步通知
+*该接口用于接收来自支付宝的异步通知，不需要客户端调用*  
+<a href="https://opendocs.alipay.com/open/00dn78#%E5%BC%82%E6%AD%A5%E9%80%9A%E7%9F%A5%E7%89%B9%E6%80%A7">参考链接<a/>  
+接口/alipay/response  
+方法POST  
+返回值`"success"`

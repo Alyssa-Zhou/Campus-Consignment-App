@@ -32,7 +32,7 @@ public class UserDetailController extends BaseController {
         return new JsonResult<UserDetail>(OK, data);
     }
 
-    @RequestMapping(value = "/users/detail",method = RequestMethod.PATCH)
+    @RequestMapping(value = "/users/detail",method = RequestMethod.POST)
     public JsonResult<Void> changeInfo(@RequestBody UserDetail userDetail, HttpSession session) {
         // 从HttpSession对象中获取uid和username
         String id = getIdFromSession(session);
@@ -55,7 +55,7 @@ public class UserDetailController extends BaseController {
         AVATAR_TYPES.add("image/bmp");
         AVATAR_TYPES.add("image/gif");
     }
-    @RequestMapping(value = "/users/detail/avatar",method = RequestMethod.PATCH)
+    @RequestMapping(value = "/users/detail/avatar",method = RequestMethod.POST)
     public JsonResult<String> changeAvatar(@RequestParam("file") MultipartFile file, HttpSession session) {
         // 判断上传的文件是否为空
         if (file.isEmpty()) {
@@ -119,7 +119,7 @@ public class UserDetailController extends BaseController {
         return new JsonResult<String>(OK, avatar);
     }
 
-    @RequestMapping(value = "/users/detail/studentcard",method = RequestMethod.PATCH)
+    @RequestMapping(value = "/users/detail/studentcard",method = RequestMethod.POST)
     public JsonResult<String> changeStudentCard(@RequestParam("file") MultipartFile file, HttpSession session) {
         // 判断上传的文件是否为空
         if (file.isEmpty()) {

@@ -42,4 +42,25 @@ public class OrderController extends BaseController{
         List<Order> data = orderService.findMyOrder(uid,"seller");
         return new JsonResult<List<Order>>(OK,data);
     }
+
+    // 修改订单状态
+    @RequestMapping(value = "/orders/state/{oid}",method = RequestMethod.POST)
+    public JsonResult<Void> changeOrderState(@PathVariable("oid") String oid, @RequestParam String state,HttpSession session) {
+        // 从session获取当前用户id
+        String uid = getIdFromSession(session);
+        orderService.changeOrderState(uid,oid,state);
+        return new JsonResult<Void>(OK);
+    }
+
+    // 修改订单信息
+    @RequestMapping(value = "/orders/{oid}",method = RequestMethod.POST)
+    public JsonResult<Void> changeOrderInfo(@PathVariable("oid") String oid,
+                                            @RequestParam String type,
+                                            @RequestParam String number,
+                                            HttpSession session) {
+        // 从session获取当前用户id
+        String uid = getIdFromSession(session);
+        orderService.changeOrderInfo(uid,oid,number,type);
+        return new JsonResult<Void>(OK);
+    }
 }

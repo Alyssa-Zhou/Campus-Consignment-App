@@ -10,7 +10,7 @@ import java.util.List;
 public interface IOrderMapper {
 
     /**
-     * @description:插入新订单
+     * @description: 插入新订单
      * @date: 2023/1/15
      * @param: order
      * @return: java.lang.Integer
@@ -18,7 +18,7 @@ public interface IOrderMapper {
     Integer insert(Order order);
 
     /**
-     * @description:根据卖家id查询订单
+     * @description: 根据卖家id查询订单
      * @date: 2023/1/15
      * @param: id
      * @return: java.util.List<com.swjtu.secondhand.entity.Order>
@@ -26,7 +26,7 @@ public interface IOrderMapper {
     List<Order> findAllOrderBySellerId(String seller);
 
     /**
-     * @description:根据买家id查询订单
+     * @description: 根据买家id查询订单
      * @date: 2023/1/15
      * @param: id
     paramType 指定参数的名称 seller buyer
@@ -35,7 +35,7 @@ public interface IOrderMapper {
     List<Order> findAllOrderByBuyerId(String buyer);
 
     /**
-     * @description:根据订单id查询订单
+     * @description: 根据订单id查询订单
      * @date: 2023/1/15
      * @param: id
      * @return: com.swjtu.secondhand.entity.Order
@@ -43,7 +43,7 @@ public interface IOrderMapper {
     Order findOrderById(String id);
 
     /**
-     * @description:更新支付订单号
+     * @description: 更新支付订单号
      * @date: 2023/1/15
      * @param: id
     payId
@@ -52,7 +52,7 @@ public interface IOrderMapper {
     Integer updatePayInfoById(String id, String payId, Date updateTime);
 
     /**
-     * @description:更新快递号
+     * @description: 更新快递号
      * @date: 2023/1/15
      * @param: id
     expressNumber
