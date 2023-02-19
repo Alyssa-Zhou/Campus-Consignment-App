@@ -44,11 +44,11 @@ public class ProductController extends BaseController{
 
     // 新增商品
     @RequestMapping(value = "/products",method = RequestMethod.POST)
-    public JsonResult<Void> addProduct(@RequestBody Product product, HttpSession session) {
+    public JsonResult<String> addProduct(@RequestBody Product product, HttpSession session) {
         // 从session获取当前用户id
         String uid = getIdFromSession(session);
-        productService.addProduct(uid,product);
-        return new JsonResult<Void>(OK);
+        String data = productService.addProduct(uid,product);
+        return new JsonResult<String>(OK,data);
     }
 
     // 更新商品信息

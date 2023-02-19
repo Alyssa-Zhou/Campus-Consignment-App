@@ -32,6 +32,7 @@ public class UserDetailController extends BaseController {
         return new JsonResult<UserDetail>(OK, data);
     }
 
+    // 修改用户信息
     @RequestMapping(value = "/users/detail",method = RequestMethod.POST)
     public JsonResult<Void> changeInfo(@RequestBody UserDetail userDetail, HttpSession session) {
         // 从HttpSession对象中获取uid和username

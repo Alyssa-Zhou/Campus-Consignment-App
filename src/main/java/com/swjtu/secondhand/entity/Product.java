@@ -14,6 +14,12 @@ public class Product{
     private String id;
     
     private String seller;
+
+    private String sellerAlias;
+
+    private String sellerAvatar;
+
+    private String sellerPhone;
     
     private String name;
     
@@ -132,5 +138,28 @@ public class Product{
         this.updateTime = updateTime;
     }
 
+    public String getSellerAlias() {
+        return sellerAlias;
+    }
+
+    public void setSellerAlias(String sellerAlias) {
+        this.sellerAlias = sellerAlias;
+    }
+
+    public String getSellerAvatar() {
+        return sellerAvatar;
+    }
+
+    public void setSellerAvatar(String sellerAvatar) {
+        this.sellerAvatar = sellerAvatar;
+    }
+
+    public String getSellerPhone() {
+        return sellerPhone;
+    }
+
+    public void setSellerPhone(String sellerPhone) {
+        this.sellerPhone = sellerPhone;
+    }
 }
 

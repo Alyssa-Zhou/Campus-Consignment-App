@@ -37,7 +37,7 @@ public interface IProductService {
      * @param: product 商品详情
      * @return: void
      */
-    void addProduct(String uid, Product product);
+    String addProduct(String uid, Product product);
 
     /**
      * @description: 修改商品信息

@@ -11,9 +11,9 @@
 
 # 用户
 ## 注册
-接口 /users
-请求 POST
-传入参数
+接口 /users  
+请求 POST  
+传入参数  
 ```json
 {
   "username":"xiaocaomei",
@@ -32,9 +32,9 @@
 ```
 
 ## 登录
-接口 /users/sessions
-请求 POST
-传入参数
+接口 /users/sessions  
+请求 POST  
+传入参数  
 ```json
 {
     "username": "lower111",
@@ -61,9 +61,9 @@
 ```
 
 ## 修改密码
-*用于登录以后修改密码，用户id从session获取，不需要前端传入*
-接口 /users/password
-请求 PATCH
+*用于登录以后修改密码，用户id从session获取，不需要前端传入*  
+接口 /users/password  
+请求 PATCH  
 传入参数
 ```json
 {
@@ -113,8 +113,8 @@
 ## 修改用户信息
 *如果用户注册后，自动建立用户信息表填写基本内容，此接口用于维护用户信息*
 
-接口 /users/detail
-请求 PATCH
+接口 /users/detail  
+请求 POST  
 传入参数：**传入需要修改的值**
 ```json
 {
@@ -171,10 +171,10 @@ form-data
 
 # 商品
 ## 获取全部商品列表
-需要的信息：图片 商品名 价格 描述 位置
-接口/products
-方法GET
-无需参数
+需要的信息：图片 商品名 价格 描述 位置  
+接口/products  
+方法GET  
+无需参数  
 返回值：商品对象列表
 ```json
 {
@@ -245,9 +245,9 @@ form-data
 ```
 
 ## 获取指定商品详情信息
-接口/products/detail/{id} 
-方法GET
-参数 id为商品id
+接口/products/detail/{id}  
+方法GET  
+参数:id为商品id  
 返回值
 ```json
 {
@@ -256,6 +256,9 @@ form-data
     "data": {
         "id": "00000000000000000004",
         "seller": "0000000004",
+        "sellerAlias": "什么时候能有书读",
+        "sellerAvatar": "/upload/db975cb9-6ee3-49ea-b399-ab9b41b69676.jpg",
+        "sellerPhone": "12344556697",
         "name": "核酸抗原",
         "category": "00020",
         "description": "核酸抗原",
@@ -285,12 +288,12 @@ form-data
 }
 ```
 
-返回值:
+返回值:data-新增商品id
 ```json
 {
     "state": 200,
     "message": null,
-    "data": null
+    "data": "17"
 }
 ```
 

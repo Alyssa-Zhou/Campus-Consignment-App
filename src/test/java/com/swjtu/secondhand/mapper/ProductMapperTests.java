@@ -50,6 +50,10 @@ public class ProductMapperTests {
         product.setUpdateTime(Date.from(Instant.now()));
         Integer rows =productMapper.insert(product);
         System.out.println("rows=" + rows);
+
+        String id = product.getId();
+        System.out.println("id=" + id);
+        System.out.println(product);
     }
 
     @Test

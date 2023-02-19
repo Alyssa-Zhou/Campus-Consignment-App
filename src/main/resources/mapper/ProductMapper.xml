@@ -6,6 +6,9 @@
 
     <resultMap id="ProductEntityMap" type="com.swjtu.secondhand.entity.Product">
         <id column="id" property="id"/>
+        <result column="seller_alias" property="sellerAlias"/>
+        <result column="seller_avatar" property="sellerAvatar"/>
+        <result column="seller_phone" property="sellerPhone"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
@@ -13,7 +16,7 @@
     <!--查询全部在售商品-->
     <select id="findAll" resultMap="ProductEntityMap">
         select
-            id, name, description, location, price, img
+            id, name, description, location, price, img, seller_alias, seller_avatar
         from product
         where state="0"
         order by update_time desc
@@ -22,7 +25,7 @@
     <!--查询单个-->
     <select id="findById" resultMap="ProductEntityMap">
         select
-            id, seller, name, category, description, location, price, img, tags, state, create_time, update_time
+            id, seller,seller_alias, seller_avatar,seller_phone, name, category, description, location, price, img, tags, state, create_time, update_time
         from product
         where id = #{id}
     </select>
@@ -30,16 +33,16 @@
     <!--查询分类下全部-->
     <select id="findListByCategory" resultMap="ProductEntityMap">
         select
-            id, name, description, location, price, img
+            id, name, description, location, price, img, seller_alias, seller_avatar
         from product
         where category = #{category} and state="0"
         order by update_time desc
     </select>
 
     <!--新增所有列-->
-    <insert id="insert">
-        insert into product(seller, name, category, description, location, price, img, tags, state, create_time, update_time)
-        values (#{seller}, #{name}, #{category}, #{description}, #{location}, #{price}, #{img}, #{tags}, #{state}, #{createTime}, #{updateTime})
+    <insert id="insert" parameterType="com.swjtu.secondhand.entity.Product" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into product(seller,seller_alias, seller_avatar,seller_phone, name, category, description, location, price, img, tags, state, create_time, update_time)
+        values (#{seller}, #{sellerAlias}, #{sellerAvatar}, #{sellerPhone}, #{name}, #{category}, #{description}, #{location}, #{price}, #{img}, #{tags}, #{state}, #{createTime}, #{updateTime})
     </insert>
 
     <!--通过主键修改数据-->

@@ -2,7 +2,9 @@ package com.swjtu.secondhand.service.impl;
 
 import com.swjtu.secondhand.entity.Product;
 import com.swjtu.secondhand.entity.User;
+import com.swjtu.secondhand.entity.UserDetail;
 import com.swjtu.secondhand.mapper.IProductMapper;
+import com.swjtu.secondhand.mapper.IUserDetailMapper;
 import com.swjtu.secondhand.mapper.IUserMapper;
 import com.swjtu.secondhand.service.IProductService;
 import com.swjtu.secondhand.service.ex.InsertException;
@@ -23,6 +25,9 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private IUserMapper userMapper;
+
+    @Autowired
+    private IUserDetailMapper userDetailMapper;
 
     @Override
     public List<Product> getProductList() {
@@ -63,28 +68,37 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public void addProduct(String uid, Product product) {
+    public String addProduct(String uid, Product product) {
         // 查询用户信息
         // 调用userMapper的findByUid()方法，根据参数uid查询用户数据
-        User result = userMapper.findById(uid);
+        User user = userMapper.findById(uid);
         // 检查查询结果是否为null
-        if (result == null) {
+        if (user == null) {
             // 是：抛出UserNotFoundException异常
             throw new UserNotFoundException("用户数据不存在");
         }
 
         // 检查查询结果中的isDelete是否为1
-        if (result.getState() == "0") {
+        if (user.getState() == "0") {
             // 是：抛出UserNotFoundException异常
             throw new UserNotFoundException("用户数据不存在");
         }
-        // 补全id
+
+        UserDetail userDetail = userDetailMapper.findById(uid);
+
+        // 补全用户信息
         product.setSeller(uid);
+        product.setSellerAlias(userDetail.getAlias());
+        product.setSellerAvatar(userDetail.getAvatar());
+        product.setSellerPhone(userDetail.getPhoneNumber());
+
         // 补全日期信息
         product.setCreateTime(new Date());
         product.setUpdateTime(new Date());
+
         // 补全state
         product.setState("0");
+
         // 执行插入
         Integer rows = productMapper.insert(product);
         // 判断返回值 错误处理
@@ -93,6 +107,7 @@ public class ProductServiceImpl implements IProductService {
             throw new InsertException("插入数据时出现未知错误，请联系系统管理员");
         }
 
+        return product.getId();
     }
 
     @Override
