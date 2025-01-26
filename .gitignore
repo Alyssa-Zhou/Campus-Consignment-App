@@ -31,3 +31,20 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Maven output
+/target/
+/.mvn/wrapper/
+
+# IDE configurations
+/.vscode/
+/.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Sensitive configuration
+application.properties
